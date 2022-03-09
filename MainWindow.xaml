@@ -7,24 +7,7 @@
         mc:Ignorable="d"
         Title="Черновик" MinHeight="450" Height="450" MinWidth="730" Width="530" Icon="Img/Черновик.ico">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel>
-                <TextBlock Margin="7,0">Поиск</TextBlock>
-                <TextBox Name="TbSearch" Width="250" Height="30" Margin="7,0"></TextBox>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center">Сортировка</TextBlock>
-                <ComboBox Name="CbSort" Height="30" Width="110" Margin="7,0"></ComboBox>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock HorizontalAlignment="Center">Фильтрация</TextBlock>
-                <ComboBox Name="CbFilt" Height="30" Width="110" Margin="7,0"></ComboBox>
-            </StackPanel>
-        </StackPanel>
-        <Frame Name="MainFrame" Grid.Row="1"></Frame>
+        
+        <Frame Name="MainFrame"></Frame>
     </Grid>
 </Window>

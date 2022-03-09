@@ -26,7 +26,7 @@ namespace StroyMat
         public string Title { get; set; }
         public int CountInPack { get; set; }
         public string Unit { get; set; }
-        public Nullable<double> CountInStock { get; set; }
+        public double CountInStock { get; set; }
         public double MinCount { get; set; }
         public string Description { get; set; }
         public decimal Cost { get; set; }
