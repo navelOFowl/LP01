@@ -133,5 +133,22 @@ namespace StroyMat
             LVMaterial.Items.Refresh();
             TbCount.Text = "Записей: " + MatFilter.Count().ToString() + " из " + MatStart.Count().ToString();
         }
+
+        private void LVMaterial_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(LVMaterial.SelectedIndex != -1)
+            {
+                ButtEditMin.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtEditMin.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ButtEditMin_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedList = LVMaterial.SelectedItems;
+        }
     }
 }

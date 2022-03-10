@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="90"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -34,8 +34,9 @@
                 <TextBlock HorizontalAlignment="Center">Фильтрация</TextBlock>
                 <ComboBox Name="CbFilt" Height="30" Width="110" Margin="7,0" SelectionChanged="CbFilt_SelectionChanged"></ComboBox>
             </StackPanel>
+            <Button Name="ButtEditMin" Width="200" Height="30" Margin="7,0,0,19" Click="ButtEditMin_Click" Visibility="Hidden">Изменить минимальное кол-во</Button>
         </StackPanel>
-        <ListView Name="LVMaterial" Grid.Row="1" SelectionMode="Extended">
+        <ListView Name="LVMaterial" Grid.Row="1" SelectionMode="Extended" SelectionChanged="LVMaterial_SelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center" Orientation="Vertical"></WrapPanel>
