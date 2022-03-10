@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StroyMat"
         mc:Ignorable="d"
-        Title="Черновик" MinHeight="450" Height="450" MinWidth="730" Width="530" Icon="Img/Черновик.ico">
+        Title="Черновик" MinHeight="750" Height="750" MinWidth="740" Width="740" Icon="Img/Черновик.ico">
     <Grid>
         
         <Frame Name="MainFrame"></Frame>

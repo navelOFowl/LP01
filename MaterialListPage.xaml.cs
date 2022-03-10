@@ -25,6 +25,14 @@ namespace StroyMat
         {
             InitializeComponent();
             LVMaterial.ItemsSource = MatStart;
+            CbFilt.Items.Add("Все типы");
+            List<MaterialType> mt = DatabaseClass.DB.MaterialType.ToList();
+            for (int i = 0; i < mt.Count; i++)
+            {
+                CbFilt.Items.Add(mt[i].Title);
+            }
+            CbFilt.SelectedIndex = 0;
+            TbCount.Text = "Записей: " + MatStart.Count().ToString() + " из " + MatStart.Count().ToString();
         }
         private void TbSupplier_Loaded(object sender, RoutedEventArgs e)
         {
@@ -45,45 +53,85 @@ namespace StroyMat
                 tb.Text = "Поставщики: " + str.Substring(0, str.Length - 2);
             }
         }
-        List<Material> MatFilter = DatabaseClass.DB.Material.ToList();
+        List<Material> MatFilter = new List<Material>();
+
+        List<Material> MatSearch = new List<Material>();
+
+        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(TbSearch.Text != String.Empty)
+            {
+                MatSearch = MatStart.Where(x => x.Title.Contains(TbSearch.Text)).ToList();
+                FliterSort();
+            }
+            else
+            {
+                FliterSort();
+            }
+        }
+        private void CbFilt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           FliterSort();
+        }
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch(CbSort.SelectedIndex)
+            FliterSort();
+        }
+        private void FliterSort()
+        {
+            int filterIndex = CbFilt.SelectedIndex;
+
+            if (TbSearch.Text != String.Empty)
             {
+                if (filterIndex != 0)
+                {
+                    MatFilter = MatSearch.Where(x => x.MaterialTypeID == filterIndex).ToList();
+                }
+                else
+                {
+                    MatFilter = MatSearch;
+                }
+            }
+            else
+            {
+                if (filterIndex != 0)
+                {
+                    MatFilter = MatStart.Where(x => x.MaterialTypeID == filterIndex).ToList();
+                }
+                else
+                {
+                    MatFilter = MatStart;
+                }
+            }
+
+            switch (CbSort.SelectedIndex)
+            {
+                case 0:
+                    MatFilter.Sort((x, y) => x.Title.CompareTo(y.Title));
+                    break;
                 case 1:
                     MatFilter.Sort((x, y) => x.Title.CompareTo(y.Title));
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
+                    MatFilter.Reverse();
                     break;
                 case 2:
-                    MatFilter.Sort((x, y) => x.Title.CompareTo(y.Title));
-                    MatFilter.Reverse();
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
+                    MatFilter.Sort((x, y) => x.Cost.CompareTo(y.Cost));
                     break;
                 case 3:
                     MatFilter.Sort((x, y) => x.Cost.CompareTo(y.Cost));
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
+                    MatFilter.Reverse();
                     break;
                 case 4:
-                    MatFilter.Sort((x, y) => x.Cost.CompareTo(y.Cost));
-                    MatFilter.Reverse();
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
+                    MatFilter.Sort((x, y) => x.CountInStock.CompareTo(y.CountInStock));
                     break;
                 case 5:
                     MatFilter.Sort((x, y) => x.CountInStock.CompareTo(y.CountInStock));
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
-                    break;
-                case 6:
-                    MatFilter.Sort((x, y) => x.CountInStock.CompareTo(y.CountInStock));
                     MatFilter.Reverse();
-                    LVMaterial.ItemsSource = MatFilter;
-                    LVMaterial.Items.Refresh();
                     break;
             }
+
+            LVMaterial.ItemsSource = MatFilter;
+            LVMaterial.Items.Refresh();
+            TbCount.Text = "Записей: " + MatFilter.Count().ToString() + " из " + MatStart.Count().ToString();
         }
     }
 }

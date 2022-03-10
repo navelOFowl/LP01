@@ -84,6 +84,7 @@
     <Compile Include="MaterialListPage.xaml.cs">
       <DependentUpon>MaterialListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MaterialPart.cs" />
     <Compile Include="MaterialSupplier.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -165,6 +166,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="materials\Thumbs.db" />
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -185,6 +187,32 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Img\picture.png" />
+    <Resource Include="materials\material_1.jpeg" />
+    <Resource Include="materials\material_10.jpeg" />
+    <Resource Include="materials\material_11.jpeg" />
+    <Resource Include="materials\material_12.jpeg" />
+    <Resource Include="materials\material_13.jpeg" />
+    <Resource Include="materials\material_14.jpeg" />
+    <Resource Include="materials\material_15.jpeg" />
+    <Resource Include="materials\material_16.jpeg" />
+    <Resource Include="materials\material_17.jpeg" />
+    <Resource Include="materials\material_18.jpeg" />
+    <Resource Include="materials\material_19.jpeg" />
+    <Resource Include="materials\material_2.jpeg" />
+    <Resource Include="materials\material_20.jpeg" />
+    <Resource Include="materials\material_21.jpeg" />
+    <Resource Include="materials\material_22.jpeg" />
+    <Resource Include="materials\material_23.jpeg" />
+    <Resource Include="materials\material_24.jpeg" />
+    <Resource Include="materials\material_25.jpeg" />
+    <Resource Include="materials\material_26.png" />
+    <Resource Include="materials\material_3.jpeg" />
+    <Resource Include="materials\material_4.jpeg" />
+    <Resource Include="materials\material_5.jpeg" />
+    <Resource Include="materials\material_6.jpeg" />
+    <Resource Include="materials\material_7.jpeg" />
+    <Resource Include="materials\material_8.jpeg" />
+    <Resource Include="materials\material_9.jpeg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
