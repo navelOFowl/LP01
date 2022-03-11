@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <TextBlock>Введите новое минимальное значение</TextBlock>
-            <TextBox Width="100" Margin="0,7"></TextBox>
+            <TextBox Name="TbNewMinCount" Width="100" Margin="0,7"></TextBox>
             <Button Name="ButtOk" Width="50" Click="ButtOk_Click">OK</Button>
         </StackPanel>
     </Grid>

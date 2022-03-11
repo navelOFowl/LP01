@@ -19,16 +19,27 @@ namespace StroyMat
     /// </summary>
     public partial class MinCountWindow : Window
     {
-        public MinCountWindow()
+        public MinCountWindow(double max)
         {
             InitializeComponent();
+            TbNewMinCount.Text = max.ToString();
+
         }
 
-        int newMinCount = 0;
+        double newMinCount = 0;
 
         private void ButtOk_Click(object sender, RoutedEventArgs e)
         {
-            newMinCount = 0;
+            newMinCount = Convert.ToDouble(TbNewMinCount.Text);
+            this.Close();
+        }
+
+        public double NewMinCount
+        {
+            get
+            {
+                return newMinCount;
+            }
         }
     }
 }

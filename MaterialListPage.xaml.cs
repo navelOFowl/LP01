@@ -61,7 +61,7 @@ namespace StroyMat
         {
             if(TbSearch.Text != String.Empty)
             {
-                MatSearch = MatStart.Where(x => x.Title.Contains(TbSearch.Text)).ToList();
+                MatSearch = MatStart.Where(x => x.Title.Contains(TbSearch.Text) || x.Description.Contains(TbSearch.Text)).ToList();
                 FliterSort();
             }
             else
@@ -149,6 +149,39 @@ namespace StroyMat
         private void ButtEditMin_Click(object sender, RoutedEventArgs e)
         {
             var selectedList = LVMaterial.SelectedItems;
+            double maxMc = 0;
+            foreach (Material mC in selectedList)
+            {
+                if (mC.MinCount > maxMc)
+                {
+                    maxMc = mC.MinCount;
+                }
+            }
+            MinCountWindow mCWin = new MinCountWindow(maxMc);
+            mCWin.ShowDialog();
+            if (mCWin.NewMinCount > 0)
+            {
+                foreach (Material mC in selectedList)
+                {
+                       mC.MinCount = mCWin.NewMinCount;
+                }
+                LVMaterial.Items.Refresh();
+            }
+        }
+
+        private void ButtEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Button B = (Button)sender;
+            int id = Convert.ToInt32(B.Uid);
+            Material MaterialEdit = DatabaseClass.DB.Material.FirstOrDefault(y => y.ID == id);
+            EditWindow editWindow = new EditWindow(MaterialEdit);
+            editWindow.ShowDialog();
+        }
+
+        private void ButtAdd_Click(object sender, RoutedEventArgs e)
+        {
+            EditWindow editWindow = new EditWindow();
+            editWindow.ShowDialog();
         }
     }
 }

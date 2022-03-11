@@ -10,6 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
+           
             <RowDefinition Height="90"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -17,8 +18,9 @@
             <StackPanel>
                 <TextBlock Margin="7,0">Поиск</TextBlock>
                 <TextBox Name="TbSearch" Width="150" Height="30" Margin="7,0" TextChanged="TbSearch_TextChanged"></TextBox>
+                <Button Name="ButtAdd" Height="30" Width="110" Margin="0,5" Click="ButtAdd_Click">Добавить</Button>
             </StackPanel>
-            <TextBlock Margin="2,0" VerticalAlignment="Center" Name="TbCount">Записей:</TextBlock>
+            <TextBlock Margin="2,25" Name="TbCount">Записей:</TextBlock>
             <StackPanel>
                 <TextBlock HorizontalAlignment="Center">Сортировка</TextBlock>
                 <ComboBox Name="CbSort" Height="30" Width="110" Margin="7,0" SelectionChanged="CbSort_SelectionChanged">
@@ -34,7 +36,7 @@
                 <TextBlock HorizontalAlignment="Center">Фильтрация</TextBlock>
                 <ComboBox Name="CbFilt" Height="30" Width="110" Margin="7,0" SelectionChanged="CbFilt_SelectionChanged"></ComboBox>
             </StackPanel>
-            <Button Name="ButtEditMin" Width="200" Height="30" Margin="7,0,0,19" Click="ButtEditMin_Click" Visibility="Hidden">Изменить минимальное кол-во</Button>
+            <Button Name="ButtEditMin" Width="150" Height="30" Margin="7,0,0,19" Click="ButtEditMin_Click" FontSize="8" Visibility="Hidden">Изменить минимальное кол-во</Button>
         </StackPanel>
         <ListView Name="LVMaterial" Grid.Row="1" SelectionMode="Extended" SelectionChanged="LVMaterial_SelectionChanged">
             <ListView.ItemsPanel>
@@ -57,7 +59,10 @@
                                     <TextBlock Name="TbMinCount" Text="{Binding MinCount, StringFormat={}Минимальное количество: {0} шт}"></TextBlock>
                                     <TextBlock Width="450" TextWrapping="Wrap" Name="TbSupplier" Loaded="TbSupplier_Loaded" Uid="{Binding ID}"></TextBlock>
                                 </StackPanel>
-                                <TextBlock Name="TbLeft" Text="{Binding CountInStock, StringFormat={}Остаток: {0} шт}"></TextBlock>
+                                <StackPanel>
+                                    <TextBlock Name="TbLeft" Text="{Binding CountInStock, StringFormat={}Остаток: {0} шт}"></TextBlock>
+                                    <Button Name="ButtEdit" Uid="{Binding ID}" Click="ButtEdit_Click">Редактировать</Button>
+                                </StackPanel>
                             </StackPanel>
                         </Border>
                     </Grid>

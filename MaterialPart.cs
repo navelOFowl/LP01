@@ -34,7 +34,7 @@ namespace StroyMat
                 {
                     return br;
                 }
-                else if(MinCount * 3 <= CountInStock)
+                else if(MinCount * 3 == CountInStock)
                 {
                     return br2;
                 }
