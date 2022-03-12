@@ -89,7 +89,7 @@
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Image" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductionPersonCount" Type="int" />
-          <Property Name="ProductionWorkshopNumber" Type="int" />
+          <Property Name="ProductionWorkshopNumber" Type="float" />
           <Property Name="MinCostForAgent" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductCostHistory">
@@ -197,7 +197,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MaterialSupplier_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Material" Type="Self.Material" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="MaterialSupplier" Type="Self.MaterialSupplier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -542,7 +544,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProductionPersonCount" Type="Int32" />
-          <Property Name="ProductionWorkshopNumber" Type="Int32" />
+          <Property Name="ProductionWorkshopNumber" Type="Double" />
           <Property Name="MinCostForAgent" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <NavigationProperty Name="ProductType" Relationship="Model.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="ProductCostHistory" Relationship="Model.FK_ProductCostHistory_Product" FromRole="Product" ToRole="ProductCostHistory" />
@@ -686,7 +688,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MaterialSupplier_Material">
-          <End Type="Model.Material" Role="Material" Multiplicity="1" />
+          <End Type="Model.Material" Role="Material" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model.MaterialSupplier" Role="MaterialSupplier" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
@@ -769,7 +773,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

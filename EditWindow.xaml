@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StroyMat"
         mc:Ignorable="d"
-        Title="Создание/редактирование" Height="850" Width="400">
+        Title="Создание/редактирование" Height="850" Width="600">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Margin="0,5">
             <StackPanel Orientation="Horizontal">
@@ -13,6 +13,11 @@
                     <TextBlock>Изображение</TextBlock>
                     <Image Name="MaterialImage" Source="Img/picture.png" Width="100" Height="100"></Image>
                     <Button Name="ButtEditImage" Height="30" Width="100" Margin="0,5" Click="ButtEditImage_Click">Изменить</Button>
+                    <TextBlock Margin="0,5">Потенциальные поставщики</TextBlock>
+                    <ComboBox Name="CbSupplier" IsEditable="True"></ComboBox>
+                    <Button Margin="0,7" Width="150" Name="ButtSupplierAdd" Click="ButtSupplierAdd_Click">Добавить</Button>
+                    <Button Margin="0,7" Width="150" Name="ButtSupplierRemove" Click="ButtSupplierRemove_Click">Удалить</Button>
+                    <ListBox Height="100" Name="LbSupliers"></ListBox>
                 </StackPanel>
                 <StackPanel Margin="7,0">
                     <TextBlock Margin="0,5">Наименование</TextBlock>
@@ -42,13 +47,11 @@
                     <TextBlock Margin="0,5">Стоимость за единицу</TextBlock>
                     <TextBox Name="TbCost" Width="150" HorizontalAlignment="Left"></TextBox>
                     <TextBlock Margin="0,5">Описание</TextBlock>
-                    <TextBox Name="TbDescription" TextWrapping="Wrap" Height="200"></TextBox>
-                    <TextBlock Margin="0,5">Потенциальные поставщики</TextBlock>
-                    <ListBox Name="LbSupliers" Height="200" SelectionMode="Multiple"></ListBox>
+                    <TextBox Name="TbDescription" TextWrapping="Wrap" Width="200" Height="200"></TextBox>
+                    <Button Name="ButtUpdate" Width="150" Margin="0,7" Click="ButtUpdate_Click">Записать</Button>
+                    <Button Name="ButtDelete" Width="150" Click="ButtDelete_Click">Удалить</Button>
                 </StackPanel>
             </StackPanel>
-            <Button Name="ButtUpdate" Width="150" Margin="0,7" Click="ButtUpdate_Click">Записать</Button>
-            <Button Name="ButtDelete" Width="150" Click="ButtDelete_Click">Удалить</Button>
         </StackPanel>
     </Grid>
 </Window>
