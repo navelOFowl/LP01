@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StroyMat", "StroyMat.csproj", "{72E2CA3B-2D99-4094-B364-1699BDDB8FA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSUniversalLib", "..\WSUniversalLib\WSUniversalLib.csproj", "{01750A00-3E30-4A61-9F75-1AB9C29E564E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSUniversalLibTests", "..\WSUniversalLibTests\WSUniversalLibTests.csproj", "{9CD39840-A756-4A94-865E-93235D22B4A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{72E2CA3B-2D99-4094-B364-1699BDDB8FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72E2CA3B-2D99-4094-B364-1699BDDB8FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72E2CA3B-2D99-4094-B364-1699BDDB8FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01750A00-3E30-4A61-9F75-1AB9C29E564E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01750A00-3E30-4A61-9F75-1AB9C29E564E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01750A00-3E30-4A61-9F75-1AB9C29E564E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01750A00-3E30-4A61-9F75-1AB9C29E564E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD39840-A756-4A94-865E-93235D22B4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD39840-A756-4A94-865E-93235D22B4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD39840-A756-4A94-865E-93235D22B4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD39840-A756-4A94-865E-93235D22B4A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
