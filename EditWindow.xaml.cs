@@ -46,6 +46,7 @@ namespace StroyMat
             CbMaterialType.ItemsSource = DatabaseClass.DB.MaterialType.ToList();
             CbMaterialType.SelectedValuePath = "ID";
             CbMaterialType.DisplayMemberPath = "Title";
+            CbMaterialType.SelectedIndex = MaterialEdit.MaterialTypeID - 1;
 
             TbTitle.Text = MaterialEdit.Title;
             TbCountInStock.Text = MaterialEdit.CountInStock.ToString();
@@ -63,6 +64,23 @@ namespace StroyMat
             CbSupplier.ItemsSource = DatabaseClass.DB.Supplier.ToList();
             CbSupplier.SelectedValuePath = "ID";
             CbSupplier.DisplayMemberPath = "Title";
+
+
+            List<Supplier> s = new List<Supplier>();
+
+            foreach (MaterialSupplier t in DatabaseClass.DB.MaterialSupplier)
+            {
+                if (t.MaterialID == MaterialEdit.ID)
+                {
+                    List<Supplier> tempS = DatabaseClass.DB.Supplier.Where(x => x.ID == t.SupplierID).ToList();
+                    s.AddRange(tempS);
+                }
+            }
+
+            foreach (Supplier sup in s)
+            {
+                LbSupliers.Items.Add(sup);
+            }
             LbSupliers.SelectedValuePath = "ID";
             LbSupliers.DisplayMemberPath = "Title";
         }
@@ -70,12 +88,20 @@ namespace StroyMat
         private void ButtSupplierAdd_Click(object sender, RoutedEventArgs e)
         {
             List<Supplier> sup = DatabaseClass.DB.Supplier.ToList();
+            for (int i = 0; i < LbSupliers.Items.Count; i++)
+            {
+                if (CbSupplier.DisplayMemberPath[CbSupplier.SelectedIndex] == LbSupliers.DisplayMemberPath[i])
+                {
+                    MessageBox.Show("Поставщик уже добавлен", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+            }
             LbSupliers.Items.Add(sup.FirstOrDefault(x => x.ID == CbSupplier.SelectedIndex + 1));
         }
 
         private void ButtSupplierRemove_Click(object sender, RoutedEventArgs e)
         {
-            LbSupliers.Items.Remove(LbSupliers.SelectedItem);
+            LbSupliers.Items.RemoveAt(LbSupliers.SelectedIndex);
         }
 
         private void ButtEditImage_Click(object sender, RoutedEventArgs e)
@@ -98,24 +124,24 @@ namespace StroyMat
 
         private void ButtUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
                 MaterialEdit.Title = TbTitle.Text;
                 MaterialEdit.MaterialTypeID = CbMaterialType.SelectedIndex + 1;
                 MaterialEdit.CountInStock = Convert.ToSingle(TbCountInStock.Text);
                 MaterialEdit.Unit = TbUnit.Text;
                 MaterialEdit.CountInPack = Convert.ToInt32(TbCountInPack.Text);
                 MaterialEdit.MinCount = Convert.ToInt32(TbMinCount.Text);
-                MaterialEdit.Cost = Convert.ToInt32(TbCost.Text);
+                MaterialEdit.Cost = Convert.ToDecimal(TbCost.Text);
                 MaterialEdit.Description = TbDescription.Text;
                 MaterialEdit.Image = path;
-                if(IsCreate == true)
+                if (IsCreate == true)
                 {
                     DatabaseClass.DB.Material.Add(MaterialEdit);
                 }
                 DatabaseClass.DB.SaveChanges();
-                MessageBox.Show(MaterialEdit.ID.ToString());
                 List<MaterialSupplier> materialSuppliersOld = MS.Where(x => x.MaterialID == MaterialEdit.ID).ToList();
-                if(materialSuppliersOld.Count != 0)
+                if (materialSuppliersOld.Count != 0)
                 {
                     foreach (MaterialSupplier ms in materialSuppliersOld)
                     {
@@ -128,20 +154,37 @@ namespace StroyMat
                     ms.MaterialID = MaterialEdit.ID;
                     ms.SupplierID = t.ID;
                     DatabaseClass.DB.MaterialSupplier.Add(ms);
-                    MessageBox.Show(ms.ID.ToString());
                 }
                 DatabaseClass.DB.SaveChanges();
                 MessageBox.Show("Данные записаны", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Не удалось записать данные, повторите попытку", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось записать данные, повторите попытку", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ButtDelete_Click(object sender, RoutedEventArgs e)
         {
+            if(IsCreate == true)
+            {
+                MessageBox.Show("Невозможно удалить запись, так как она еще не существует", "Редактирование", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            if (MessageBoxResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить эту запись?", "Редактирование", MessageBoxButton.YesNo, MessageBoxImage.Question))
+            {
+                DatabaseClass.DB.Material.Remove(MaterialEdit);
+                DatabaseClass.DB.SaveChanges();
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
+
+            
         }
     }
 }

@@ -176,12 +176,14 @@ namespace StroyMat
             Material MaterialEdit = DatabaseClass.DB.Material.FirstOrDefault(y => y.ID == id);
             EditWindow editWindow = new EditWindow(MaterialEdit);
             editWindow.ShowDialog();
+            LVMaterial.Items.Refresh();
         }
 
         private void ButtAdd_Click(object sender, RoutedEventArgs e)
         {
             EditWindow editWindow = new EditWindow();
             editWindow.ShowDialog();
+            LVMaterial.Items.Refresh();
         }
     }
 }
