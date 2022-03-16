@@ -21,6 +21,9 @@ namespace StroyMat
     public partial class MaterialListPage : Page
     {
         List<Material> MatStart = DatabaseClass.DB.Material.ToList();
+        List<Material> MatFilter = new List<Material>();
+        PageChange pc = new PageChange();
+        List<Material> MatSearch = new List<Material>();
         public MaterialListPage()
         {
             InitializeComponent();
@@ -33,6 +36,8 @@ namespace StroyMat
             }
             CbFilt.SelectedIndex = 0;
             TbCount.Text = "Записей: " + MatStart.Count().ToString() + " из " + MatStart.Count().ToString();
+            pc.CountPage = 20;
+            LVMaterial.ItemsSource = MatFilter.Skip(0).Take(pc.CountPage).ToList();
         }
         private void TbSupplier_Loaded(object sender, RoutedEventArgs e)
         {
@@ -53,9 +58,6 @@ namespace StroyMat
                 tb.Text = "Поставщики: " + str.Substring(0, str.Length - 2);
             }
         }
-        List<Material> MatFilter = new List<Material>();
-
-        List<Material> MatSearch = new List<Material>();
 
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -184,6 +186,24 @@ namespace StroyMat
             EditWindow editWindow = new EditWindow();
             editWindow.ShowDialog();
             LVMaterial.Items.Refresh();
+        }
+
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            switch (tb.Uid)  
+            {
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            LVMaterial.ItemsSource = MatFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList(); 
         }
     }
 }

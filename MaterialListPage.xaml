@@ -13,6 +13,7 @@
            
             <RowDefinition Height="90"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <StackPanel>
@@ -69,5 +70,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
+            <TextBlock Name="txtPrev" Uid="prev" Text=" Пред. " MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txt1" Uid="1" Text="{Binding  Path = NPage[0], StringFormat={}{0,3}}" Visibility="{Binding Visible[0]}" FontWeight="{Binding Bold[0]}" MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txt2" Uid="2" Text="{Binding  Path = NPage[1], StringFormat={}{0,3}}" Visibility="{Binding Visible[1]}" FontWeight="{Binding Bold[1]}" MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txt3" Uid="3" Text="{Binding  Path = NPage[2], StringFormat={}{0,3}}" Visibility="{Binding Visible[2]}" FontWeight="{Binding Bold[2]}" MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txt4" Uid="4" Text="{Binding  Path = NPage[3], StringFormat={}{0,3}}" Visibility="{Binding Visible[3]}" FontWeight="{Binding Bold[3]}" MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txt5" Uid="5" Text="{Binding  Path = NPage[4], StringFormat={}{0,3}}" Visibility="{Binding Visible[4]}" FontWeight="{Binding Bold[4]}" MouseDown="GoPage_MouseDown"/>
+            <TextBlock Name="txtNext" Uid="next" Text=" След." MouseDown="GoPage_MouseDown"/>
+        </StackPanel>
     </Grid>
 </Page>
